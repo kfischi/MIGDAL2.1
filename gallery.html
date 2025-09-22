@@ -104,6 +104,7 @@
         .gallery-section {
             padding: 120px 0 80px;
             background: linear-gradient(180deg, #0B192A 0%, #1A2E44 100%);
+            min-height: 100vh;
         }
 
         .video-container {
@@ -114,12 +115,17 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: url('https://raw.githubusercontent.com/kfischi/MIGDAL/main/gallery/33.jpg') center/cover;
+            position: relative;
         }
 
         .video-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .filter-buttons {
@@ -513,17 +519,26 @@
                 button.addEventListener('click', function() {
                     const filter = this.getAttribute('data-filter');
                     
+                    // עדכון כפתור פעיל
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
                     
+                    // סינון תמונות
                     galleryItems.forEach(item => {
-                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        if (filter === 'all') {
+                            item.style.display = 'block';
+                        } else if (item.getAttribute('data-category') === filter) {
                             item.style.display = 'block';
                         } else {
                             item.style.display = 'none';
                         }
                     });
                 });
+            });
+
+            // הצגת כל התמונות בטעינה
+            galleryItems.forEach(item => {
+                item.style.display = 'block';
             });
 
             // Modal functionality

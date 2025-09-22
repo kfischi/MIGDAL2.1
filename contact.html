@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>צור קשר - מושבת מגדל</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="main-nav" aria-label="תפריט ראשי">
+    <ul>
+      <li><a href="index.html">דף הבית</a></li>
+      <li><a href="about.html">הסיפור שלנו</a></li>
+      <li><a href="gallery.html">גלריה</a></li>
+      <li><a href="contact.html" aria-current="page">צור קשר</a></li>
+    </ul>
+  </nav>
+  <section class="hero contact-hero" aria-label="צור קשר">
+    <div class="hero-content">
+      <h1>צור קשר</h1>
+      <p>נשמח לשמוע ממך!</p>
+    </div>
+  </section>
+  <main>
+    <section>
+      <h2>השאר פרטים</h2>
+      <form class="contact-form" aria-label="טופס יצירת קשר">
+        <label for="name">שם מלא:</label>
+        <input type="text" id="name" name="name" required />
+        <label for="email">דוא"ל:</label>
+        <input type="email" id="email" name="email" required />
+        <label for="message">הודעה:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">שלח</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <ul>
+      <li><a href="privacy.html">מדיניות פרטיות</a></li>
+      <li><a href="accessibility.html">הצהרת נגישות</a></li>
+    </ul>
+    <p>כל הזכויות שמורות &copy; מושבת מגדל 2025</p>
+  </footer>
+</body>
+</html>

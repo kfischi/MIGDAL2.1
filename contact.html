@@ -1,46 +1,538 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>צור קשר - מושבת מגדל</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ליצירת קשר והזמנות - מגדל של חיים</title>
+    <meta name="description" content="צרו קשר עם מגדל של חיים - מתחם אירוח משפחתי יוקרתי במושב מגדל. הזמינו עכשיו את החופשה המושלמת שלכם.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0B192A;
+            --secondary-color: #4C72B0;
+            --text-color: #E0E0E0;
+            --font-family-heading: 'Playfair Display', serif;
+            --font-family-body: 'Heebo', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-body);
+            background: var(--primary-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .header-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 25, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        .logo {
+            font-family: var(--font-family-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--secondary-color), #3C5D90);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger-line {
+            width: 30px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 0 80px;
+            background-image: url('https://raw.githubusercontent.com/kfischi/MIGDAL/main/gallery/1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(11, 25, 42, 0.85) 0%, rgba(76, 114, 176, 0.5) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: var(--font-family-heading);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            color: white;
+        }
+
+        .contact-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #0B192A 0%, #1A2E44 100%);
+        }
+
+        .contact-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(26, 46, 68, 0.6), rgba(15, 31, 49, 0.6));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(76, 114, 176, 0.2);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(-10px);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary-color), #3C5D90);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, rgba(26, 46, 68, 0.6), rgba(15, 31, 49, 0.6));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(76, 114, 176, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(76, 114, 176, 0.3);
+            border-radius: 10px;
+            background: rgba(11, 25, 42, 0.5);
+            color: white;
+            font-family: var(--font-family-body);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 20px rgba(76, 114, 176, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--secondary-color), #3C5D90);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(76, 114, 176, 0.5);
+        }
+
+        .map-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+
+        .quick-contact {
+            max-width: 1400px;
+            margin: 4rem auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .quick-contact-card {
+            background: linear-gradient(135deg, rgba(26, 46, 68, 0.6), rgba(15, 31, 49, 0.6));
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(76, 114, 176, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .quick-contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 20px 40px rgba(76, 114, 176, 0.3);
+        }
+
+        .quick-contact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--secondary-color), #3C5D90);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                right: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(11, 25, 42, 0.98);
+                width: 100%;
+                padding: 20px;
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .contact-grid,
+            .quick-contact {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <nav class="main-nav" aria-label="תפריט ראשי">
-    <ul>
-      <li><a href="index.html">דף הבית</a></li>
-      <li><a href="about.html">הסיפור שלנו</a></li>
-      <li><a href="gallery.html">גלריה</a></li>
-      <li><a href="contact.html" aria-current="page">צור קשר</a></li>
-    </ul>
-  </nav>
-  <section class="hero contact-hero" aria-label="צור קשר">
-    <div class="hero-content">
-      <h1>צור קשר</h1>
-      <p>נשמח לשמוע ממך!</p>
-    </div>
-  </section>
-  <main>
-    <section>
-      <h2>השאר פרטים</h2>
-      <form class="contact-form" aria-label="טופס יצירת קשר">
-        <label for="name">שם מלא:</label>
-        <input type="text" id="name" name="name" required />
-        <label for="email">דוא"ל:</label>
-        <input type="email" id="email" name="email" required />
-        <label for="message">הודעה:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-        <button type="submit">שלח</button>
-      </form>
+
+    <header class="header-nav">
+        <nav class="nav-content">
+            <a href="index.html" class="logo">מגדל של חיים</a>
+            <ul class="nav-menu">
+                <li><a href="about.html">הסיפור שלנו</a></li>
+                <li><a href="gallery.html">גלריה</a></li>
+                <li><a href="contact.html" class="cta-button">ליצירת קשר והזמנות</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="hero-title">ליצירת קשר והזמנות</h1>
+        </div>
     </section>
-  </main>
-  <footer>
-    <ul>
-      <li><a href="privacy.html">מדיניות פרטיות</a></li>
-      <li><a href="accessibility.html">הצהרת נגישות</a></li>
-    </ul>
-    <p>כל הזכויות שמורות &copy; מושבת מגדל 2025</p>
-  </footer>
+
+    <main class="contact-section">
+        <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
+            
+            <div class="quick-contact" data-aos="fade-up">
+                <div class="quick-contact-card">
+                    <div class="quick-contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: white;">וואטסאפ</h3>
+                    <p style="color: rgba(224, 224, 224, 0.8); margin-bottom: 1rem;">צרו קשר מהיר</p>
+                    <a href="https://wa.me/972523983394" target="_blank" style="color: var(--secondary-color); text-decoration: none; font-weight: 600;">052-398-3394</a>
+                </div>
+                <div class="quick-contact-card">
+                    <div class="quick-contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: white;">טלפון</h3>
+                    <p style="color: rgba(224, 224, 224, 0.8); margin-bottom: 1rem;">זמינים עבורכם</p>
+                    <a href="tel:0723311083" style="color: var(--secondary-color); text-decoration: none; font-weight: 600;">072-331-1083</a>
+                </div>
+                <div class="quick-contact-card">
+                    <div class="quick-contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: white;">אימייל</h3>
+                    <p style="color: rgba(224, 224, 224, 0.8); margin-bottom: 1rem;">שלחו לנו הודעה</p>
+                    <a href="mailto:multibrawn@gmail.com" style="color: var(--secondary-color); text-decoration: none; font-weight: 600;">multibrawn@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="contact-grid" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-info">
+                    <h2 style="font-family: var(--font-family-heading); font-size: 2.5rem; margin-bottom: 2rem; color: white;">פרטי התקשרות</h2>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: white; font-size: 1.2rem; margin-bottom: 0.5rem;">כתובת</h4>
+                            <p style="color: rgba(224, 224, 224, 0.8);">החרצית 1, מושב מגדל<br>הגליל העליון<br>מול הכינרת והר הארבל</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: white; font-size: 1.2rem; margin-bottom: 0.5rem;">שעות פעילות</h4>
+                            <p style="color: rgba(224, 224, 224, 0.8);">ראשון - חמישי: 9:00 - 20:00<br>שישי: 9:00 - 15:00<br>שבת: סגור</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: white; font-size: 1.2rem; margin-bottom: 0.5rem;">קיבולת</h4>
+                            <p style="color: rgba(224, 224, 224, 0.8);">21 חדרי אירוח<br>עד 80 אורחים<br>מושלם לשבתות חתן ואירועים משפחתיים</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: white; font-size: 1.2rem; margin-bottom: 0.5rem;">מתקנים עיקריים</h4>
+                            <p style="color: rgba(224, 224, 224, 0.8);">בריכה מחוממת ומגודרת<br>2 מטבחים כשרים<br>2 דונם שטח פתוח<br>משחקייה ופינות בילוי</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2 style="font-family: var(--font-family-heading); font-size: 2.5rem; margin-bottom: 2rem; color: white;">שלחו לנו הודעה</h2>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">שם מלא *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">טלפון *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">אימייל</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dates">תאריכים מבוקשים</label>
+                            <input type="text" id="dates" name="dates" placeholder="לדוגמה: 15-17 במרץ">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="guests">מספר אורחים</label>
+                            <select id="guests" name="guests">
+                                <option value="">בחרו מספר אורחים</option>
+                                <option value="1-20">1-20 אורחים</option>
+                                <option value="21-40">21-40 אורחים</option>
+                                <option value="41-60">41-60 אורחים</option>
+                                <option value="61-80">61-80 אורחים</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">הודעה</label>
+                            <textarea id="message" name="message" placeholder="ספרו לנו על האירוע או החופשה שלכם..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">שלח הודעה</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="map-section" data-aos="fade-up" data-aos-delay="400">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.8!2d35.5147!3d32.8344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c3f8e9d5e0001%3A0x0!2zMzLCsDUwJzAzLjgiTiAzNcKwMzAnNTIuOSJF!5e0!3m2!1siw!2sil!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 text-center" style="background: #0A1628;">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <a href="index.html" class="logo mb-4 md:mb-0">מגדל של חיים</a>
+                <div class="flex gap-6 text-3xl">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center gap-4 mb-6 text-sm">
+                <a href="index.html" class="text-gray-400 hover:text-white transition">דף הבית</a>
+                <a href="about.html" class="text-gray-400 hover:text-white transition">הסיפור שלנו</a>
+                <a href="gallery.html" class="text-gray-400 hover:text-white transition">גלריה</a>
+                <a href="contact.html" class="text-gray-400 hover:text-white transition">ליצירת קשר והזמנות</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" class="text-gray-400 hover:text-white transition" onclick="openAccessibility(event)">הצהרת נגישות</a>
+                <a href="#" class="text-gray-400 hover:text-white transition" onclick="openPrivacy(event)">מדיניות פרטיות</a>
+            </div>
+            <p class="text-gray-500">© 2025 מגדל של חיים. כל הזכויות שמורות.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 1200, once: true });
+            }
+
+            const toggle = document.getElementById('mobileToggle');
+            const menu = document.querySelector('.nav-menu');
+            
+            if (toggle && menu) {
+                toggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                });
+            }
+
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('name').value;
+                    const phone = document.getElementById('phone').value;
+                    const email = document.getElementById('email').value;
+                    const dates = document.getElementById('dates').value;
+                    const guests = document.getElementById('guests').value;
+                    const message = document.getElementById('message').value;
+                    
+                    let whatsappMessage = `שלום, אני ${name}%0A`;
+                    whatsappMessage += `טלפון: ${phone}%0A`;
+                    if (email) whatsappMessage += `אימייל: ${email}%0A`;
+                    if (dates) whatsappMessage += `תאריכים: ${dates}%0A`;
+                    if (guests) whatsappMessage += `מספר אורחים: ${guests}%0A`;
+                    if (message) whatsappMessage += `הודעה: ${message}`;
+                    
+                    window.open(`https://wa.me/972523983394?text=${whatsappMessage}`, '_blank');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,187 +1,37 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מגדל של חיים - הסיפור שלנו</title>
-    <meta name="description" content="מסע מרגש של חזון, אמונה וברכה שהוביל ליצירת המתחם המיוחד ביותר בצפון, לציבור הדתי והחרדי.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Heebo', sans-serif; background: #0B192A; color: #F2F2F2; }
-        .header-nav {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(11, 25, 42, 0.92); backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255,255,255,0.10);
-        }
-        .nav-content {
-            display: flex; justify-content: space-between; align-items: center;
-            max-width: 1400px; margin: 0 auto; padding: 18px 40px;
-        }
-        .logo { font-size: 2rem; font-weight: 700; color: white; text-decoration: none; }
-        .nav-menu { display: flex; list-style: none; gap: 38px; align-items: center;}
-        .nav-menu a { color: #E0E0E0; font-weight: 500; font-size: 1.1rem; transition: .3s;}
-        .nav-menu a:hover { color: #4C72B0;}
-        .cta-button {
-            background: linear-gradient(90deg,#4C72B0 60%,#2b4b7a 100%);
-            color: white; padding: 12px 28px; border-radius: 9999px;
-            font-weight: 600; font-size: 1rem; box-shadow: 0 2px 16px #0002;
-            transition: .2s;
-        }
-        .cta-button:hover { background: #153a6a;}
-        /* HERO VIDEO */
-        .hero { position: relative; min-height: 60vh; overflow: hidden;}
-        .hero-bg-video {
-            position: absolute; inset:0; width:100%; height:100%; object-fit:cover;
-            z-index:0; filter: brightness(0.5);
-        }
-        .hero-overlay {
-            position: absolute; inset:0; width:100%; height:100%;
-            background: linear-gradient(180deg,rgba(11,25,42,0.8) 60%,rgba(11,25,42,1) 100%);
-            z-index: 1;
-        }
-        .hero-container {
-            max-width: 1200px; margin: 0 auto; padding: 0 40px; text-align: center;
-            position: relative; z-index: 2; min-height: 60vh; display: flex; flex-direction:column;
-            align-items:center; justify-content:center;
-        }
-        .hero-title {
-            font-family: 'Heebo', sans-serif;
-            font-size: clamp(2.8rem, 8vw, 5rem);
-            font-weight: 900; margin-bottom: 1.7rem;
-            background: linear-gradient(45deg, #FFF 0%, #4C72B0 100%);
-            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(76, 114, 176, 0.3);
-            letter-spacing: 2px;
-        }
-        .hero-desc {
-            font-size: 1.4rem; color: #e0eaff; margin-bottom: 2em;
-        }
-        .gallery-link {
-            display:inline-block; background: #4C72B0; color:#fff; font-weight:bold;
-            padding:12px 28px; border-radius:9999px; text-decoration:none; font-size:1.1rem;
-            box-shadow: 0 2px 16px #0003; transition:.2s;
-        }
-        .gallery-link:hover { background:#2b4b7a;}
-        /* CONTENT */
-        .content-section { padding: 4rem 0; max-width: 1100px; margin: 0 auto;}
-        .content-block {
-            display: flex; flex-direction: row-reverse; gap: 3rem;
-            align-items: center; margin-bottom: 5rem; background: rgba(30,50,90,0.13); border-radius:1rem; overflow:hidden;
-            box-shadow: 0 4px 24px #0004;
-        }
-        .content-block.reverse { flex-direction: row; }
-        .text-content { flex: 1; padding: 2.5rem 1rem;}
-        .text-content h2 {
-            font-size: 2.1rem; font-weight: 700; margin-bottom: 1.3rem; color: #4C72B0;
-            font-family: 'Heebo', sans-serif;
-        }
-        .text-content p { font-size: 1.15rem; color: #e0e0e0; margin-bottom: 1rem;}
-        .image-content { flex: 1; min-width: 250px;}
-        .image-content img {
-            width: 100%; border-radius: 0 1rem 1rem 0; box-shadow: 0 10px 30px #0003; min-height: 280px; object-fit: cover;
-        }
-        .content-block.reverse .image-content img { border-radius: 1rem 0 0 1rem;}
-        @media (max-width: 900px) {
-            .content-block, .content-block.reverse {flex-direction: column;}
-            .image-content img {border-radius: 1rem !important; min-height:180px;}
-            .text-content{padding:1.5rem 0.5rem;}
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>אודות מושבת מגדל</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- HEADER -->
-    <header class="header-nav">
-        <nav class="nav-content">
-            <a href="index.html" class="logo">מגדל של חיים</a>
-            <ul class="nav-menu">
-                <li><a href="about.html">אודות</a></li>
-                <li><a href="gallery.html">גלריה</a></li>
-                <li><a href="contact.html" class="cta-button">הזמן עכשיו</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- HERO VIDEO -->
-    <section class="hero">
-        <video class="hero-bg-video" autoplay muted loop playsinline poster="gallery/10.jpg">
-            <source src="gallery/migdal_video2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-container" data-aos="fade-up">
-            <h1 class="hero-title" data-aos="fade-down">הסיפור שלנו</h1>
-            <div class="hero-desc" data-aos="fade-up">
-                מסע מרגש של חזון, אמונה וברכה שהוביל ליצירת המתחם המיוחד ביותר בצפון.
-            </div>
-            <a href="gallery.html" class="gallery-link" data-aos="fade-up" data-aos-delay="100">לגלריה</a>
-        </div>
+  <nav class="main-nav" aria-label="תפריט ראשי">
+    <ul>
+      <li><a href="index.html">דף הבית</a></li>
+      <li><a href="about.html" aria-current="page">אודות</a></li>
+      <li><a href="gallery.html">גלריה</a></li>
+      <li><a href="contact.html">צור קשר</a></li>
+    </ul>
+  </nav>
+  <section class="hero small-hero" aria-label="נוף הכנרת">
+    <div class="hero-content">
+      <h1>אודות מושבת מגדל</h1>
+    </div>
+  </section>
+  <main>
+    <section>
+      <h2>היסטוריה וקהילה</h2>
+      <p>מושבת מגדל נוסדה בתחילת המאה ה-20 על ידי חלוצים יהודים. המקום משלב מסורת, טבע ופיתוח קהילתי. תושבי המושבה נהנים מפעילויות תרבות וחינוך, טבע גלילי ונוף הכנרת.</p>
     </section>
-
-    <main class="content-section">
-        <div class="content-block" data-aos="fade-up">
-            <div class="text-content">
-                <h2>ברכת הצדיק מלווה אותנו</h2>
-                <p>
-                    מתחם "מגדל של חיים" הוקם מתוך חזון ואמונה, ונקרא על שם הצדיק האור החיים הקדוש זצ"ל. מרגע הרעיון ועד ההקמה, המתחם לווה בהשגחה מיוחדת וקיבלנו סיוע בלתי צפוי בכל קושי.
-                </p>
-                <p>
-                    היה ידוע שהצדיק לא זכה לילדים, וכהוקרה על עזרתו, החלטנו שהמתחם ישמש כבית חם ומבורך למשפחות יהודיות. זהו המקום שבו ילדינו וילדיכם יכולים לחוות שמחה, אושר וקדושה תחת ברכתו.
-                </p>
-            </div>
-            <div class="image-content">
-                <img src="gallery/10.jpg" alt="גינות ונוף המתחם">
-            </div>
-        </div>
-
-        <div class="content-block reverse" data-aos="fade-up" data-aos-delay="100">
-            <div class="text-content">
-                <h2>נוחות ומרחב לקבוצות ומשפחות</h2>
-                <p>
-                    המתחם הייחודי שלנו, השוכן על פני שני דונם רחבי ידיים, מציע שילוב מושלם בין מרחב פתוח לנוחות מקסימלית. עם דונם וחצי בנויים, המתחם מכיל שתי יחידות אירוח גדולות המותאמות במיוחד לאירוח קבוצות ומשפחות.
-                </p>
-                <p>
-                    ביחידה הראשונה תמצאו 12 חדרים מרווחים עם שירותים ומקלחות צמודים, וביחידה השנייה 8 חדרים נוספים, בנוסף לשני חדרי ילדים. בסך הכל, אנו יכולים לארח עד כ-80 נופשים בנוחות ועם פרטיות מלאה.
-                </p>
-            </div>
-            <div class="image-content">
-                <img src="gallery/21.jpg" alt="חדרי אירוח">
-            </div>
-        </div>
-
-        <div class="content-block" data-aos="fade-up" data-aos-delay="200">
-            <div class="text-content">
-                <h2>פינוקים לכל המשפחה</h2>
-                <p>
-                    בכל חדר מחכים לכם מיטות נוחות, ארון מסודר ופינות ישיבה. בכל אחד משני המתחמים ישנו סלון רחב ידיים, מטבח כשר ומאובזר ושולחנות אוכל גדולים המתאימים לסעודות משותפות.
-                </p>
-                <p>
-                    בחצר תמצאו בריכת שחייה גדולה, מגודרת ובטיחותית, פינות ישיבה מוצלות, שולחן סנוקר, פינג פונג, הוקי אוויר ומשחקייה צבעונית לילדים. הכל מול נוף עוצר נשימה של הכינרת.
-                </p>
-            </div>
-            <div class="image-content">
-                <img src="gallery/7.jpg" alt="מטבח כשר וגדול">
-            </div>
-        </div>
-    </main>
-
-    <footer class="bg-gray-900 text-gray-400 py-8 px-4 text-center">
-        <p>&copy; 2025 מגדל של חיים. כל הזכויות שמורות.</p>
-        <div class="mt-4 flex justify-center space-x-4 rtl:space-x-reverse text-2xl footer-socials">
-            <a href="#" target="_blank" aria-label="פייסבוק"><i class="fab fa-facebook"></i></a>
-            <a href="#" target="_blank" aria-label="אינסטגרם"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank" aria-label="יוטיוב"><i class="fab fa-youtube"></i></a>
-            <a href="#" target="_blank" aria-label="טיקטוק"><i class="fab fa-tiktok"></i></a>
-        </div>
-    </footer>
-
-    <script>
-        AOS.init({
-            duration: 1200,
-            once: true,
-        });
-    </script>
+  </main>
+  <footer>
+    <ul>
+      <li><a href="privacy.html">מדיניות פרטיות</a></li>
+      <li><a href="accessibility.html">הצהרת נגישות</a></li>
+    </ul>
+    <p>כל הזכויות שמורות &copy; מושבת מגדל 2025</p>
+  </footer>
 </body>
 </html>

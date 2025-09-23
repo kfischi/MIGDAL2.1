@@ -264,12 +264,6 @@
         .section-padding {
             padding: 6rem 1rem;
         }
-
-        @media (max-width: 768px) {
-            .section-padding {
-                padding: 3rem 1rem;
-            }
-        }
         
         .section-heading {
             font-family: var(--font-family-heading);
@@ -380,16 +374,6 @@
             text-decoration: none;
         }
 
-        @media (max-width: 768px) {
-            .floating-whatsapp {
-                bottom: 20px;
-                right: 20px;
-                width: 60px;
-                height: 60px;
-                font-size: 2rem;
-            }
-        }
-
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -401,6 +385,10 @@
         }
 
         @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 1rem;
+            }
+
             .mobile-menu-toggle {
                 display: flex;
             }
@@ -429,6 +417,36 @@
             
             .hero-content {
                 padding: 2rem 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .section-heading {
+                font-size: 2rem;
+            }
+
+            .nav-content {
+                padding: 15px 20px;
+            }
+
+            .hero-cta {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .floating-whatsapp {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
             }
         }
     </style>
@@ -600,3 +618,33 @@
                     once: true,
                     easing: 'ease-out-cubic'
                 });
+            }
+
+            const toggle = document.getElementById('mobileToggle');
+            const menu = document.querySelector('.nav-menu');
+            
+            if (toggle && menu) {
+                toggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    toggle.classList.toggle('active');
+                });
+
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.remove('active');
+                        toggle.classList.remove('active');
+                    });
+                });
+            }
+
+            const video = document.getElementById('heroVideo');
+            if (video) {
+                video.playbackRate = 1.0;
+                video.addEventListener('loadeddata', () => {
+                    video.style.opacity = '1';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -246,6 +246,36 @@
             color: var(--secondary-color);
         }
 
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: bounce 2s ease-in-out infinite;
+            text-decoration: none;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+        }
+
         @media (max-width: 768px) {
             .mobile-menu-toggle {
                 display: flex;
@@ -278,6 +308,7 @@
         <nav class="nav-content">
             <a href="index.html" class="logo">מגדל של חיים</a>
             <ul class="nav-menu">
+                <li><a href="index.html">דף הבית</a></li>
                 <li><a href="about.html">הסיפור שלנו</a></li>
                 <li><a href="gallery.html">גלריה</a></li>
                 <li><a href="contact.html" class="cta-button">ליצירת קשר והזמנות</a></li>
@@ -465,45 +496,13 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <style>
-    .floating-whatsapp {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 70px;
-        height: 70px;
-        background: #25d366;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
-        z-index: 1000;
-        transition: all 0.3s ease;
-        animation: bounce 2s ease-in-out infinite;
-        text-decoration: none;
-    }
-
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-
-    .floating-whatsapp:hover {
-        transform: scale(1.15);
-        box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
-    }
-    </style>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof AOS !== 'undefined') {
                 AOS.init({ duration: 1200, once: true });
             }
 
-            // Mobile menu
             const toggle = document.getElementById('mobileToggle');
             const menu = document.querySelector('.nav-menu');
             
@@ -519,7 +518,6 @@
                 });
             }
 
-            // Filter functionality
             const filterButtons = document.querySelectorAll('.filter-btn');
             const galleryItems = document.querySelectorAll('.gallery-item');
 
@@ -527,11 +525,9 @@
                 button.addEventListener('click', function() {
                     const filter = this.getAttribute('data-filter');
                     
-                    // עדכון כפתור פעיל
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // סינון תמונות
                     galleryItems.forEach(item => {
                         if (filter === 'all') {
                             item.style.display = 'block';
@@ -544,12 +540,10 @@
                 });
             });
 
-            // הצגת כל התמונות בטעינה
             galleryItems.forEach(item => {
                 item.style.display = 'block';
             });
 
-            // Modal functionality
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const closeModal = document.getElementById('closeModal');

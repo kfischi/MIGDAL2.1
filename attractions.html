@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אטרקציות באזור - מגדל של חיים</title>
+    <meta name="description" content="מדריך מלא לאטרקציות, מקומות קדושים וחוויות משפחתיות באזור הכינרת והגליל המותאמות לציבור הדתי">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0B192A;
+            --secondary-color: #4C72B0;
+            --text-color: #E0E0E0;
+            --font-family-heading: 'Playfair Display', serif;
+            --font-family-body: 'Heebo', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-body);
+            background: var(--primary-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .header-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 25, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        .logo {
+            font-family: var(--font-family-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--secondary-color), #3C5D90);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger-line {
+            width: 30px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 0 80px;
+            background: linear-gradient(rgba(11, 25, 42, 0.7), rgba(76, 114, 176, 0.3)), url('https://images.unsplash.com/photo-1544967882-43c7ad76ec0e?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-family-heading);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .category-nav {
+            position: sticky;
+            top: 80px;
+            background: rgba(11, 25, 42, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+        }
+
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .attractions-section {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, #0B192A 0%, #1A2E44 50%, #0B192A 100%);
+        }
+
+        .attraction-card {
+            background: linear-gradient(135deg, rgba(26, 46, 68, 0.6), rgba(15, 31, 49, 0.6));
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(76, 114, 176, 0.2);
+            transition: all 0.4s ease;
+            margin-bottom: 3rem;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 20px 40px rgba(76, 114, 176, 0.3);
+        }
+
+        .attraction-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .attraction-content {
+            padding: 2.5rem;
+        }
+
+        .attraction-category {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .attraction-title {
+            font-family: var(--font-family-heading);
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .attraction-description {
+            color: rgba(224, 224, 224, 0.9);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .attraction-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(224, 224, 224, 0.8);
+        }
+
+        .detail-icon {
+            color: var(--secondary-color);
+        }
+
+        .attraction-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #3C5D90;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.secondary {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .action-btn.secondary:hover {
+            background: var(--secondary-color);
+        }
+
+        .kosher-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #22c55e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                right: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: rgba(11, 25, 42, 0.98);
+                width: 100%;
+                padding: 20px;
+                transition: 0.3s;
+                height: calc(100vh - 80px);
+                backdrop-filter: blur(20px);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
+                text-align: center;
+            }
+
+            .category-buttons {
+                gap: 0.5rem;
+            }
+
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .attraction-content {
+                padding: 1.5rem;
+            }
+
+            .attraction-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-nav">
+        <nav class="nav-content">
+            <a href="index.html" class="logo">מגדל של חיים</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">דף הבית</a></li>
+                <li><a href="about.html">הסיפור שלנו</a></li>
+                <li><a href="gallery.html">גלריה</a></li>
+                <li><a href="attractions.html">אטרקציות באזור</a></li>
+                <li><a href="contact.html" class="cta-button">ליצירת קשר והזמנות</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="hero-title">אטרקציות באזור</h1>
+            <p class="hero-subtitle">מדריך מלא למקומות קדושים, טבע ואטרקציות משפחתיות בגליל</p>
+        </div>
+    </section>
+
+    <nav class="category-nav">
+        <div class="category-buttons">
+            <a href="#holy-sites" class="category-btn">מקומות קדושים</a>
+            <a href="#nature" class="category-btn">טבע ונוף</a>
+            <a href="#family" class="category-btn">אטרקציות משפחתיות</a>
+            <a href="#restaurants" class="category-btn">מסעדות כשרות</a>
+            <a href="#practical" class="category-btn">מידע מעשי</a>
+        </div>
+    </nav>
+
+    <main class="attractions-section">
+        <div class="max-w-7xl mx-auto px-4">
+
+            <!-- מקומות קדושים -->
+            <section id="holy-sites" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-8 text-center" style="font-family: var(--font-family-heading);">מקומות קדושים</h2>
+                
+                <div class="attraction-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80" alt="קבר רבי מאיר בעל הנס" class="attraction-image">
+                    <div class="attraction-content">
+                        <span class="attraction-category">מקום קדוש</span>
+                        <h3 class="attraction-title">קבר רבי מאיר בעל הנס</h3>
+                        <p class="attraction-description">
+                            אחד המקומות הקדושים החשובים ביותר בישראל. רבי מאיר בעל הנס, מגדולי התנאים, קבור בטבריה. 
+                            המקום מקודש במיוחד לתפילה ובקשות, והרבה מבקשים פועלים בזכותו. מנהג מיוחד להדליק נרות ולתרום לצדקה.
+                        </p>
+                        <div class="attraction-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt detail-icon"></i>
+                                <span>טבריה - 15 דקות נסיעה</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock detail-icon"></i>
+                                <span>פתוח 24/7</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-parking detail-icon"></i>
+                                <span>חניה בתשלום</span>
+                            </div>
+                        </div>
+                        <div class="attraction-actions">
+                            <a href="https://maps.google.com/?q=רבי מאיר בעל הנס טבריה" target="_blank" class="action-btn">
+                                <i class="fas fa-directions ml-2"></i>
+                                נווטו במפות
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attraction-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=800&q=80" alt="הר מירון" class="attraction-image">
+                    <div class="attraction-content">
+                        <span class="attraction-category">מקום קדוש</span>
+                        <h3 class="attraction-title">הר מירון - קבר רשב"י</h3>
+                        <p class="attraction-description">
+                            מקום קבורתו של רבי שמעון בר יוחאי (רשב"י) מחבר הזוהר הקדוש. מקום מקודש במיוחד לתפילה ולימוד.
+                            באדר ניסן מתקיים כאן ההילולא הגדולה עם מאות אלפי מבקרים. המקום מתאים לביקור משפחתי ותפילה.
+                        </p>
+                        <div class="attraction-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt detail-icon"></i>
+                                <span>הר מירון - 45 דקות נסיעה</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock detail-icon"></i>
+                                <span>ימים א'-ה': 8:00-17:00</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users detail-icon"></i>
+                                <span>מתאים למשפחות</span>
+                            </div>
+                        </div>
+                        <div class="attraction-actions">
+                            <a href="https://maps.google.com/?q=הר מירון רשבי" target="_blank" class="action-btn">
+                                <i class="fas fa-directions ml-2"></i>
+                                נווטו במפות
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attraction-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://raw.githubusercontent.com/kfischi/MIGDAL2.1/main/gallery/israel-555771_1280.jpg" alt="קבר רחל אמנו בכפר נחום" class="attraction-image">
+                    <div class="attraction-content">
+                        <span class="attraction-category">מקום קדוש</span>
+                        <h3 class="attraction-title">כפר נחום - בית כנסת עתיק</h3>
+                        <p class="attraction-description">
+                            בית כנסת עתיק מהתקופה הביזנטית הבנוי מאבן בזלת שחורה. השטח מקודש ומזכיר את החיים היהודיים 
+                            העתיקים בגליל. מקום שקט ומרגש לביקור עם המשפחה, עם נוף יפה של הכינרת.
+                        </p>
+                        <div class="attraction-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt detail-icon"></i>
+                                <span>כפר נחום - 20 דקות נסיעה</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-ticket-alt detail-icon"></i>
+                                <span>כניסה בתשלום</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-camera detail-icon"></i>
+                                <span>מקום צילום מומלץ</span>
+                            </div>
+                        </div>
+                        <div class="attraction-actions">
+                            <a href="https://maps.google.com/?q=כפר נחום בית כנסת" target="_blank" class="action-btn">
+                                <i class="fas fa-directions ml-2"></i>
+                                נווטו במפות
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- טבע ונוף -->
+            <section id="nature" class="mt-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-8 text-center" style="font-family: var(--font-family-heading);">טבע ונוף</h2>
+                
+                <div class="attraction-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="הר ארבל" class="attraction-image">
+                    <div class="attraction-content">
+                        <span class="attraction-category">טבע</span>
+                        <h3 class="attraction-title">הר ארבל - נוף עוצר נשימה</h3>
+                        <p class="attraction-description">
+                            צוק ארבל מציע אחד הנופים היפים ביותר בישראל - מבט פנורמי על הכינרת, הגליל והגולן.
+                            יש מסלולי טיול מתאימים למשפחות, ואפשר להגיע במכונית כמעט עד הצוק. מומלץ במיוחד לשקיעה!
+                        </p>
+                        <div class="attraction-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt detail-icon"></i>
+                                <span>הר ארבל - 10 דקות נסיעה</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-hiking detail-icon"></i>
+                                <span>מסלול קל-בינוני</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-sun detail-icon"></i>
+                                <span>מומלץ לשקיעה</span>
+                            </div>
+                        </div>
+                        <div class="attraction-actions">
+                            <a href="https://maps.google.com/?q=הר ארבל תצפית" target="_blank" class="action-btn">
+                                <i class="fas fa-directions ml-2"></i>
+                                נווטו למתחם
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attraction-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1544737151-6e4b99de2aaa?auto=format&fit=crop&w=800&q=80" alt="גן לאומי כורזים" class="attraction-image">
+                    <div class="attraction-content">
+                        <span class="attraction-category">טבע</span>
+                        <h3 class="attraction-title">גן לאומי כורזים</h3>
+                        <p class="attraction-description">
+                            גן לאומי קסום עם שרידי עיר עתיקה, מעיינות מים קרירים ומסלולי טיול נעימים. 
+                            המקום מתאים מאוד למשפחות עם ילדים - יש אזורי פיקניק, מים לשטיפת רגליים ונוף יפה.
+                        </p>
+                        <div class="attraction-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt detail-icon"></i>
+                                <span>כורזים - 25 דקות נסיעה</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-swimming-pool detail-icon"></i>
+                                <span>מעיינות קרירים</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-tree detail-icon"></i>
+                                <span>אזורי פיקניק</span>
+                            </div>
+                        </div>
+                        <div class="attraction-actions">
+                            <a href="https://maps.google.com/?q=גן לאומי כורזים" target="_blank" class="action-btn">מידע והזמנות</a>
+                            <a href="https://parks.org.il" target="_blank" class="action-btn secondary">אתר רשמי</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- אטרקציות משפחתיות -->
+            <section id="family" class="mt-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-8 text-center" style="font-family: var(--font-family-heading);">אטרקציות משפחתיות</h2>
+                
+                <div class="attraction-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://raw.githubusercontent.com/kfischi/MIGDAL2.1/main/gallery/kinneret-6132473_1920.jpg" alt="חופי הכינרת" class="attraction-image">
+                    <div class="attraction-content">
+                        <span class="attraction-category">בילוי משפחתי</span>
+                        <h3 class="attraction-title">חופי הכינרת המותאמים</h3>
+                        <p class="attraction-description">
+                            חופים מובחרים בכינרת עם מתקנים נוחים למשפחות דתיות: מקלחות נפרדות, אזורי הצללה 
+                            ופעילויות מים מתונות. חוף גינוסר ודוגית מומלצים במיוחד למשפחות עם ילדים.
+                        </p>
+                        <div class="attraction-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt detail-icon"></i>
+                                <span>חוף דוגית - 18 דקות</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-umbrella-beach detail-icon"></i>
+                                <span>מתקני הצללה</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-shower detail-icon"></i>
+                                <span>מקלחות נפרדות</span>
+                            </div>
+                        </div>
+                        <div class="attraction-actions">
+                            <a href="https://maps.google.com/?q=חוף דוגית כינרת" target="_blank" class="action-btn">נווטו לחוף</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attraction-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80" alt="חוות בעלי חיים" class="attraction-image">
+                    <div class="attraction-content">
+                        <span class="attraction-category">בילוי משפחתי</span>
+                        <h3 class="attraction-title">חוות אלפקות וחיות מחמד</h3>
+                        <p class="attraction-description">
+                            חוות מעולה לילדים עם אלפקות, עזים, כבשים ועוד חיות מחמד ידידותיות. 
+                            האווירה משפחתית, יש סיורים מודרכים והאפשרות להאכיל את החיות. מתאים מאוד לילדים קטנים.
+                        </p>
+                        <div class="attraction-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt detail-icon"></i>
+                                <span>כפר ברוך - 30 דקות</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-baby detail-icon"></i>
+                                <span>מתאים לילדים קטנים</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-leaf detail-icon"></i>
+                                <span>פעילות אקולוגית</span>
+                            </div>
+                        </div>
+                        <div class="attraction-actions">
+                            <a href="tel:04-6987654" class="action-btn">חייגו לתיאום</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- מסעדות כשרות -->
+            <section id="restaurants" class="mt-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-8 text-center" style="font-family: var(--font-family-heading);">מסעדות כשרות מומלצות</h2>
+                
+                <div class="attraction-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="מסעדת כנרת" class="attraction-image">
+                    <div class="attraction-content">
+                        <span class="kosher-badge">
+                            <i class="fas fa-certificate"></i>
+                            כשר למהדרין
+                        </span>
+                        <h3 class="attraction-title">מסעדת הדייגים - טבריה</h3>
+                        <p class="attraction-description">
+                            מסעדת דגים כשרה מומלצת על הכינרת, המתמחה בדגי מים מתוקים טריים מהכינרת.
+                            האווירה משפחתית, יש מקומות ישיבה נפרדים והמסעדה מובחנת בכשרותה המהודרת.
+                        </p>
+                        <div class="attraction-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt detail-icon"></i>
+                                <span>טבריה - 15 דקות נסיעה</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-fish detail-icon"></i>
+                                <span>דגים מהכינרת</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users detail-icon"></i>
+                                <span>ישיבה נפרדת</span>
+                            </div>
+                        </div>
+                        <div class="attraction-actions">
+                            <a href="tel:04-6721234" class="action-btn">הזמנת שולחן</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- מידע מעשי -->
+            <section id="practical" class="mt-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-8 text-center" style="font-family: var(--font-family-heading);">מידע מעשי לביקור</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="attraction-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="attraction-content">
+                            <span class="attraction-category">מידע חשוב</span>
+                            <h3 class="attraction-title">טיפים לביקור בגליל</h3>
+                            <div class="attraction-description">
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-clock text-blue-400 mt-1"></i>
+                                        <span>מומלץ לתכנן ביקורים במקומות הקדושים בשעות הבוקר המוקדמות</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-sun text-blue-400 mt-1"></i>
+                                        <span>קחו הגנה מהשמש - הגליל חשוף ויכול להיות חם</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-water text-blue-400 mt-1"></i>
+                                        <span>הביאו מים - במיוחד בטיולים בטבע</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-shoe-prints text-blue-400 mt-1"></i>
+                                        <span>נעליים נוחות הכרחיות לביקור באתרים ארכאולוגיים</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="attraction-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="attraction-content">
+                            <span class="attraction-category">תחבורה</span>
+                            <h3 class="attraction-title">איך להגיע לאטרקציות</h3>
+                            <div class="attraction-description">
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-car text-blue-400 mt-1"></i>
+                                        <span>המלצה: השכירו רכב - הדרך הטובה ביותר להגיע לכל המקומות</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-bus text-blue-400 mt-1"></i>
+                                        <span>תחבורה ציבורית: אוטובוסי אגד מחברים בין הערים הגדולות</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-taxi text-blue-400 mt-1"></i>
+                                        <span>מוניות: זמינות אך יקרות למרחקים ארוכים</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-map text-blue-400 mt-1"></i>
+                                        <span>השתמשו ב-Waze או Google Maps לניווט מדויק</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- קריאה לפעולה -->
+            <section class="mt-16 text-center" data-aos="zoom-in">
+                <div class="bg-gradient-to-r from-purple-900 to-blue-900 rounded-3xl p-12">
+                    <h2 class="text-4xl font-bold text-white mb-6" style="font-family: var(--font-family-heading);">
+                        מוכנים לחקור את הגליל?
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                        צרו איתנו קשר לקבלת המלצות מותאמות אישית ולתיאום הביקור שלכם במתחם מגדל של חיים
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="contact.html" class="action-btn text-lg px-8 py-4">
+                            <i class="fas fa-calendar-alt ml-2"></i>
+                            הזמינו עכשיו
+                        </a>
+                        <a href="https://wa.me/972523983394?text=שלום, אני מעוניין לקבל מידע על האטרקציות באזור" target="_blank" class="action-btn secondary text-lg px-8 py-4">
+                            <i class="fab fa-whatsapp ml-2"></i>
+                            שאלות בוואטסאפ
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="py-12 text-center" style="background: #0A1628;">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <a href="index.html" class="logo mb-4 md:mb-0">מגדל של חיים</a>
+                <div class="flex gap-6 text-3xl">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center gap-4 mb-6 text-sm">
+                <a href="index.html" class="text-gray-400 hover:text-white transition">דף הבית</a>
+                <a href="about.html" class="text-gray-400 hover:text-white transition">הסיפור שלנו</a>
+                <a href="gallery.html" class="text-gray-400 hover:text-white transition">גלריה</a>
+                <a href="attractions.html" class="text-gray-400 hover:text-white transition">אטרקציות באזור</a>
+                <a href="contact.html" class="text-gray-400 hover:text-white transition">ליצירת קשר והזמנות</a>
+                <span class="text-gray-600">|</span>
+                <a href="accessibility.html" class="text-gray-400 hover:text-white transition">הצהרת נגישות</a>
+                <a href="privacy.html" class="text-gray-400 hover:text-white transition">מדיניות פרטיות</a>
+            </div>
+            <p class="text-gray-500">© 2025 מגדל של חיים. כל הזכויות שמורות.</p>
+            <p class="text-gray-600 text-sm mt-2">החרצית 1, מושב מגדל | טלפון: 072-331-1083 | וואטסאפ: 052-398-3394</p>
+            <p class="text-gray-600 text-sm mt-4">האתר נבנה ע"י <a href="multibrawn.html" class="text-blue-400 hover:text-blue-300 transition">Multibrawn</a> - אתרים שבונים עסקים</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 1200, once: true });
+            }
+
+            const toggle = document.getElementById('mobileToggle');
+            const menu = document.querySelector('.nav-menu');
+            
+            if (toggle && menu) {
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    menu.classList.toggle('active');
+                    toggle.classList.toggle('active');
+                });
+
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.remove('active');
+                        toggle.classList.remove('active');
+                    });
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+                        menu.classList.remove('active');
+                        toggle.classList.remove('active');
+                    }
+                });
+            }
+
+            // Smooth scrolling for category navigation
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active button
+                        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Intersection Observer for active section highlighting
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.category-btn');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -80% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const activeNavLink = document.querySelector(`.category-btn[href="#${entry.target.id}"]`);
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        if (activeNavLink) {
+                            activeNavLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

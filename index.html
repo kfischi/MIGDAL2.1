@@ -396,12 +396,14 @@
             .nav-menu {
                 position: fixed;
                 right: -100%;
-                top: 70px;
+                top: 80px;
                 flex-direction: column;
                 background: rgba(11, 25, 42, 0.98);
                 width: 100%;
                 padding: 20px;
                 transition: 0.3s;
+                height: calc(100vh - 80px);
+                backdrop-filter: blur(20px);
             }
 
             .nav-menu.active {
@@ -419,6 +421,15 @@
                 padding: 2rem 1rem;
             }
 
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+            }
+
             .feature-card {
                 padding: 1.5rem;
             }
@@ -432,7 +443,7 @@
             }
 
             .hero-cta {
-                padding: 14px 35px;
+                padding: 14px 30px;
                 font-size: 1rem;
             }
 
@@ -447,6 +458,49 @@
                 width: 60px;
                 height: 60px;
                 font-size: 2rem;
+            }
+
+            .hamburger-line {
+                width: 25px;
+                height: 2px;
+            }
+
+            .mobile-menu-toggle {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+                line-height: 1.1;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-heading {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .testimonial-card,
+            .feature-card {
+                padding: 1.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .hero-cta,
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
             }
         }
     </style>
@@ -626,6 +680,7 @@
             </div>
             <p class="text-gray-500">© 2025 מגדל של חיים. כל הזכויות שמורות.</p>
             <p class="text-gray-600 text-sm mt-2">החרצית 1, מושב מגדל | טלפון: 072-331-1083 | וואטסאפ: 052-398-3394</p>
+            <p class="text-gray-600 text-sm mt-4">האתר נבנה ע"י <a href="multibrawn.html" class="text-blue-400 hover:text-blue-300 transition">Multibrawn</a> - אתרים שבונים עסקים</p>
         </div>
     </footer>
     
@@ -648,16 +703,26 @@
             const menu = document.querySelector('.nav-menu');
             
             if (toggle && menu) {
-                toggle.addEventListener('click', () => {
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
                     menu.classList.toggle('active');
                     toggle.classList.toggle('active');
                 });
 
+                // סגירת התפריט בלחיצה על קישור
                 document.querySelectorAll('.nav-menu a').forEach(link => {
                     link.addEventListener('click', () => {
                         menu.classList.remove('active');
                         toggle.classList.remove('active');
                     });
+                });
+
+                // סגירת התפריט בלחיצה מחוץ לו
+                document.addEventListener('click', (e) => {
+                    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+                        menu.classList.remove('active');
+                        toggle.classList.remove('active');
+                    }
                 });
             }
 

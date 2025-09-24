@@ -284,20 +284,93 @@
             .nav-menu {
                 position: fixed;
                 right: -100%;
-                top: 70px;
+                top: 80px;
                 flex-direction: column;
                 background: rgba(11, 25, 42, 0.98);
                 width: 100%;
                 padding: 20px;
                 transition: 0.3s;
+                height: calc(100vh - 80px);
+                backdrop-filter: blur(20px);
             }
 
             .nav-menu.active {
                 right: 0;
             }
 
+            .nav-menu li {
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
+                text-align: center;
+            }
+
             .gallery-grid {
                 grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .gallery-section {
+                padding: 100px 0 60px;
+            }
+
+            .filter-buttons {
+                top: 70px;
+                padding: 1rem;
+                margin-bottom: 2rem;
+                border-radius: 10px;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .video-container {
+                margin-bottom: 2rem;
+            }
+
+            .nav-content {
+                padding: 15px 20px;
+            }
+
+            .hamburger-line {
+                width: 25px;
+                height: 2px;
+            }
+
+            .mobile-menu-toggle {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-section {
+                padding: 90px 0 40px;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+                padding: 1rem 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .gallery-grid {
+                gap: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            .gallery-item {
+                aspect-ratio: 3/2;
+            }
+
+            .video-container {
+                aspect-ratio: 16/8;
+                margin-bottom: 1.5rem;
             }
         }
     </style>
@@ -489,6 +562,7 @@
             </div>
             <p class="text-gray-500">© 2025 מגדל של חיים. כל הזכויות שמורות.</p>
             <p class="text-gray-600 text-sm mt-2">החרצית 1, מושב מגדל | טלפון: 072-331-1083 | וואטסאפ: 052-398-3394</p>
+            <p class="text-gray-600 text-sm mt-4">האתר נבנה ע"י <a href="multibrawn.html" class="text-blue-400 hover:text-blue-300 transition">Multibrawn</a> - אתרים שבונים עסקים</p>
         </div>
     </footer>
 

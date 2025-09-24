@@ -301,21 +301,111 @@
             .nav-menu {
                 position: fixed;
                 right: -100%;
-                top: 70px;
+                top: 80px;
                 flex-direction: column;
                 background: rgba(11, 25, 42, 0.98);
                 width: 100%;
                 padding: 20px;
                 transition: 0.3s;
+                height: calc(100vh - 80px);
+                backdrop-filter: blur(20px);
             }
 
             .nav-menu.active {
                 right: 0;
             }
 
+            .nav-menu li {
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
+                text-align: center;
+            }
+
             .contact-grid,
             .quick-contact {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-section {
+                padding: 3rem 1rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .nav-content {
+                padding: 15px 20px;
+            }
+
+            .hamburger-line {
+                width: 25px;
+                height: 2px;
+            }
+
+            .mobile-menu-toggle {
+                padding: 8px;
+            }
+
+            .map-section {
+                margin: 2rem auto;
+            }
+
+            .map-section iframe {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .contact-section {
+                padding: 2rem 0.5rem;
+            }
+
+            .contact-info,
+            .contact-form,
+            .quick-contact-card {
+                padding: 1.5rem;
+            }
+
+            .quick-contact-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .quick-contact h3 {
+                font-size: 1.2rem;
+            }
+
+            .info-item {
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .info-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .submit-btn {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .map-section iframe {
+                height: 250px;
             }
         }
     </style>
@@ -493,6 +583,8 @@
                 <a href="privacy.html" class="text-gray-400 hover:text-white transition">מדיניות פרטיות</a>
             </div>
             <p class="text-gray-500">© 2025 מגדל של חיים. כל הזכויות שמורות.</p>
+            <p class="text-gray-600 text-sm mt-2">החרצית 1, מושב מגדל | טלפון: 072-331-1083 | וואטסאפ: 052-398-3394</p>
+            <p class="text-gray-600 text-sm mt-4">האתר נבנה ע"י <a href="multibrawn.html" class="text-blue-400 hover:text-blue-300 transition">Multibrawn</a> - אתרים שבונים עסקים</p>
         </div>
     </footer>
 
